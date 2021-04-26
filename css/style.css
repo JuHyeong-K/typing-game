@@ -1,0 +1,23 @@
+@import 'nomalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+/* 초기 설정 */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+.a11y-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: polygon(0 0, 0 0, 0 0);
+}
+body {
+  font-size: 10px;
+  font-family: 'Open Sans', sans-serif;
+}
+
