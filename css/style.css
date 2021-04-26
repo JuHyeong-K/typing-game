@@ -44,17 +44,18 @@ ul {
   justify-content:space-between;
   align-items: center;
 }
-.score-count, .life-count {
+.level-count, .score-count, .life-count {
   padding-left: 10px;
 }
 .keyboard {
   display: flex;
   flex-direction: column;
 }
-.keyboard-top, .keyboard-mid, .keyboard-bottom {
+.keyboard-top, .keyboard-mid, .keyboard-bottom, .keyboard-special {
   display: flex;
   justify-content: center;
 }
+
 .key {
   position: relative;
   margin: 5px;
@@ -63,6 +64,9 @@ ul {
   height: 100px;
   border-radius: 10px;
   transition: all 0.07s;
+}
+.keyboard-special > .key {
+  width: 600px;
 }
 .key > kbd {
   position: absolute;

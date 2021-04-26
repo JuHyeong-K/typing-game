@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
   <title>Typing Game</title>
 </head>
 <body>
@@ -12,7 +13,7 @@
     <main class="main">
       <h1 class="title">Typing Game</h1>
       <section class="board">
-        <h2 class="level">Level 1</h2>
+        <h2 class="level">Level<span class="level-count">1</span></h2>
         <ul class="status">
           <li class="score">score :<span class="score-count">0</span></li>
           <li class="life">life :<span class="life-count">0</span></li>
@@ -21,8 +22,8 @@
       <section class="keyboard">
         <h2 class="a11y-hidden">KeyBoard</h2>
         <div class="keyboard-top">
-          <div data-key="81" class="key key-sign"><kbd>Q</kbd></div>
-          <div data-key="87" class="key key-hit"><kbd>W</kbd></div>
+          <div data-key="81" class="key"><kbd>Q</kbd></div>
+          <div data-key="87" class="key"><kbd>W</kbd></div>
           <div data-key="69" class="key"><kbd>E</kbd></div>
           <div data-key="82" class="key"><kbd>R</kbd></div>
           <div data-key="84" class="key"><kbd>T</kbd></div>
@@ -48,16 +49,19 @@
           <div data-key="222" class="key"><kbd>'</kbd></div>
         </div>
         <div class="keyboard-bottom">
-          <div data-key="" class="key"><kbd>Z</kbd></div>
-          <div data-key="" class="key"><kbd>X</kbd></div>
-          <div data-key="" class="key"><kbd>C</kbd></div>
-          <div data-key="" class="key"><kbd>V</kbd></div>
-          <div data-key="" class="key"><kbd>B</kbd></div>
-          <div data-key="" class="key"><kbd>N</kbd></div>
-          <div data-key="" class="key"><kbd>M</kbd></div>
-          <div data-key="" class="key"><kbd>,</kbd></div>
-          <div data-key="" class="key"><kbd>.</kbd></div>
-          <div data-key="" class="key"><kbd>/</kbd></div>
+          <div data-key="90" class="key"><kbd>Z</kbd></div>
+          <div data-key="88" class="key"><kbd>X</kbd></div>
+          <div data-key="67" class="key"><kbd>C</kbd></div>
+          <div data-key="86" class="key"><kbd>V</kbd></div>
+          <div data-key="66" class="key"><kbd>B</kbd></div>
+          <div data-key="78" class="key"><kbd>N</kbd></div>
+          <div data-key="77" class="key"><kbd>M</kbd></div>
+          <div data-key="188" class="key"><kbd>,</kbd></div>
+          <div data-key="190" class="key"><kbd>.</kbd></div>
+          <div data-key="191" class="key"><kbd>/</kbd></div>
+        </div>
+        <div class="keyboard-special">
+          <div data-key="32" class="key"><kbd>SPACE</kbd></div>
         </div>
       </section>
     </main>
