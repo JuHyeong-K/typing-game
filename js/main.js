@@ -4,14 +4,17 @@ const $keyboard = document.querySelector('.keyboard');
 const $keys = document.querySelectorAll('.key');
 
 window.addEventListener('keydown', e => {
-  const $key = document.querySelector(`.key[data-code="${e.code}"]`);
-  $key.classList.add('key-hit');
+  const selectedKey = document.querySelector(`.key[data-code="${e.code}"]`);
+  const filterKey = [...$keys].filter(key => key === selectedKey);
+  if (!filterKey.length) return; // html에 없는 키 눌렀을 때 예외처리
+  selectedKey.classList.add('key-hit');
 });
 
-const removeTransition = e => {
+const removeTransform = e => {
   if (e.propertyName !== 'transform') return;
-  e.srcElement.classList.remove('key-hit');
+  e.target.classList.remove('key-hit');
 };
+
 $keys.forEach(key => {
-  key.addEventListener('transitionend', removeTransition);
+  key.addEventListener('transitionend', removeTransform);
 });
