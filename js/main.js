@@ -4,7 +4,7 @@ const $keyboard = document.querySelector('.keyboard');
 const $keys = document.querySelectorAll('.key');
 
 window.addEventListener('keydown', e => {
-  const $key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+  const $key = document.querySelector(`.key[data-code="${e.code}"]`);
   $key.classList.add('key-hit');
 });
 
