@@ -3,10 +3,24 @@ const $lifeCount = document.querySelector('.life-count');
 const $keyboard = document.querySelector('.keyboard');
 const $keys = document.querySelectorAll('.key');
 let lastKey;
+
+const removePeep = key => {
+  key.classList.remove('key-sign');
+};
+
+const countScore = () => {
+  $scoreCount.textContent = +$scoreCount.textContent + 1;
+};
+
 window.addEventListener('keydown', e => {
   const selectedKey = document.querySelector(`.key[data-code="${e.code}"]`);
   if (!selectedKey) return; // html에 없는 키 눌렀을 때 예외처리
   selectedKey.classList.add('key-hit');
+  if (selectedKey.classList.contains('key-sign')) {
+    console.log('hitPeep!!');
+    removePeep(selectedKey);
+    countScore();
+  }
 });
 
 const removeTransform = e => {
@@ -36,6 +50,6 @@ const randomPeep = () => {
   setTimeout(() => {
     selectedKey.classList.remove('key-sign');
     randomPeep();
-  }, 1300);
+  }, 1000);
 };
 randomPeep();
