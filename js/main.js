@@ -4,14 +4,30 @@ const $keyboard = document.querySelector('.keyboard');
 const $keys = document.querySelectorAll('.key');
 let lastKey;
 
-const removePeep = key => {
-  key.classList.remove('key-sign');
+const setLifeCount = () => {
+  $lifeCount.textContent = 5;
 };
-
+const setScoreCount = () => {
+  $scoreCount.textContent = 0;
+};
+const countLife = () => {
+  $lifeCount.textContent = +$lifeCount.textContent - 1;
+  if ($lifeCount.textContent < 0) {
+    alert('Game Over');
+    setLifeCount();
+    setScoreCount();
+  }
+};
 const countScore = () => {
   $scoreCount.textContent = +$scoreCount.textContent + 1;
 };
 
+const removePeep = key => {
+  key.classList.remove('key-sign');
+};
+
+// start
+setLifeCount();
 window.addEventListener('keydown', e => {
   const selectedKey = document.querySelector(`.key[data-code="${e.code}"]`);
   if (!selectedKey) return; // html에 없는 키 눌렀을 때 예외처리
@@ -48,7 +64,10 @@ const randomPeep = () => {
   const selectedKey = randomKey();
   selectedKey.classList.add('key-sign');
   setTimeout(() => {
-    selectedKey.classList.remove('key-sign');
+    if (selectedKey.classList.contains('key-sign')) {
+      selectedKey.classList.remove('key-sign');
+      countLife();
+    }
     randomPeep();
   }, 1000);
 };
