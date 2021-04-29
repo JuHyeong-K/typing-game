@@ -12,8 +12,9 @@ const setScoreCount = () => {
 };
 const countLife = () => {
   $lifeCount.textContent = +$lifeCount.textContent - 1;
-  if ($lifeCount.textContent < 0) {
-    alert('Game Over');
+  if ($lifeCount.textContent < 1) {
+    console.log($lifeCount.textContent);
+    alert('gameover');
     setLifeCount();
     setScoreCount();
   }
