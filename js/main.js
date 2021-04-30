@@ -32,6 +32,7 @@ setLifeCount();
 window.addEventListener('keydown', e => {
   const selectedKey = document.querySelector(`.key[data-code="${e.code}"]`);
   if (!selectedKey) return; // html에 없는 키 눌렀을 때 예외처리
+  e.preventDefault(); // firefox 브라우저 quick find 키(',/) 예외처리
   selectedKey.classList.add('key-hit');
   if (selectedKey.classList.contains('key-sign')) {
     console.log('hitPeep!!');
