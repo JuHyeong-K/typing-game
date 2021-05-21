@@ -4,6 +4,18 @@ const $keyboard = document.querySelector('.keyboard');
 const $keys = document.querySelectorAll('.key');
 let lastKey;
 
+const blockKey = key => {
+  key.classList.add('block-key');
+};
+$keyboard.onclick = e => {
+  if (e.target.classList.contains('block-key')) {
+    e.target.classList.remove('block-key');
+    return;
+  }
+  if (e.target.tagName === 'KBD') blockKey(e.target.parentNode);
+  if (!e.target.classList.contains('key')) return;
+  blockKey(e.target);
+};
 const setLifeCount = () => {
   $lifeCount.textContent = 5;
 };
@@ -12,12 +24,6 @@ const setScoreCount = () => {
 };
 const countLife = () => {
   $lifeCount.textContent = +$lifeCount.textContent - 1;
-  if ($lifeCount.textContent < 1) {
-    console.log($lifeCount.textContent);
-    alert('gameover');
-    setLifeCount();
-    setScoreCount();
-  }
 };
 const countScore = () => {
   $scoreCount.textContent = +$scoreCount.textContent + 1;
@@ -28,11 +34,16 @@ const removePeep = key => {
 };
 
 // start
-setLifeCount();
 window.addEventListener('keydown', e => {
   const selectedKey = document.querySelector(`.key[data-code="${e.code}"]`);
   if (!selectedKey) return; // html에 없는 키 눌렀을 때 예외처리
-  e.preventDefault(); // firefox 브라우저 quick find 키(',/) 예외처리
+  if (
+    selectedKey.getAttribute('data-code') === 'Slash' ||
+    selectedKey.getAttribute('data-code') === 'Quote'
+  ) {
+    e.preventDefault(); // firefox 브라우저 quick find 키(',/) 예외처리
+  }
+  if (selectedKey.classList.contains('block-key')) return; // block된 key 무시
   selectedKey.classList.add('key-hit');
   if (selectedKey.classList.contains('key-sign')) {
     console.log('hitPeep!!');
@@ -58,6 +69,9 @@ const randomKey = () => {
     console.log('reduplication!!!!');
     return randomKey();
   }
+  if (selectedKey.classList.contains('block-key')) {
+    return randomKey();
+  }
   lastKey = selectedKey;
   return selectedKey;
 };
@@ -65,12 +79,55 @@ const randomKey = () => {
 const randomPeep = () => {
   const selectedKey = randomKey();
   selectedKey.classList.add('key-sign');
+  console.log('start');
   setTimeout(() => {
     if (selectedKey.classList.contains('key-sign')) {
       selectedKey.classList.remove('key-sign');
       countLife();
+      console.log('end');
+    }
+    if ($lifeCount.textContent === '0') {
+      console.log('finish');
+      if (confirm('try agin?')) {
+        setLifeCount();
+        setScoreCount();
+        randomPeep();
+      }
+      return;
     }
     randomPeep();
   }, 1000);
 };
+
 randomPeep();
+
+// const StartGame = setInterval(() => {
+//   const selectedKey = randomKey();
+//   selectedKey.classList.add('key-sign');
+//   console.log('start');
+//   setTimeout(() => {
+//     if (selectedKey.classList.contains('key-sign')) {
+//       selectedKey.classList.remove('key-sign');
+//       countLife();
+//       console.log('end');
+//     }
+//     if ($lifeCount.textContent === '0') {
+//       alert('aaaaa');
+//     }
+//     if ($lifeCount.textContent === '1') {
+//       clearInterval(StartGame);
+//       console.log('finish');
+//     }
+//   }, 1000);
+// }, 1000);
+
+// StartGame();
+
+const $hands = document.querySelector('.hands');
+
+$hands.addEventListener('change', e => {
+  const targetFingers = document.querySelectorAll(`.${e.target.id}`);
+  targetFingers.forEach(targetFinger =>
+    targetFinger.classList.toggle('block-key')
+  );
+});
