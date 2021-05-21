@@ -115,3 +115,35 @@ ul {
   color: #ccc;
   border: 0.1px dashed #ccc;
 }
+
+
+.count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #aaa;
+  opacity: 0.5;
+  font-size: 20em;
+  text-align: center;
+}
+
+.key.press {
+  border: 2px solid yellow;
+  animation-name: pressSpace;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction:alternate-reverse;
+}
+
+
+@keyframes pressSpace {
+  0% {
+    transform: scale(1.0);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}

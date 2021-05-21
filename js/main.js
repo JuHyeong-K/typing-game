@@ -3,6 +3,8 @@ const $lifeCount = document.querySelector('.life-count');
 const $keyboard = document.querySelector('.keyboard');
 const $keys = document.querySelectorAll('.key');
 let lastKey;
+const $hands = document.querySelector('.hands');
+const $space = document.querySelector('.keyboard-special .key');
 
 const blockKey = key => {
   key.classList.add('block-key');
@@ -76,6 +78,20 @@ const randomKey = () => {
   return selectedKey;
 };
 
+async function game() {
+  const countElement = document.createElement('div');
+  countElement.classList.add('count');
+  document.body.appendChild(countElement);
+  countElement.textContent = 3;
+  await new Promise(resolve => setTimeout(() => resolve(3), 1000));
+  countElement.textContent = 2;
+  await new Promise(resolve => setTimeout(() => resolve(2), 1000));
+  countElement.textContent = 1;
+  await new Promise(resolve => setTimeout(() => resolve(1), 1000));
+  document.body.removeChild(countElement);
+  randomPeep();
+}
+
 const randomPeep = () => {
   const selectedKey = randomKey();
   selectedKey.classList.add('key-sign');
@@ -89,17 +105,43 @@ const randomPeep = () => {
     if ($lifeCount.textContent === '0') {
       console.log('finish');
       if (confirm('try agin?')) {
-        setLifeCount();
-        setScoreCount();
-        randomPeep();
+        game();
+      } else {
+        $space.classList.add('press');
       }
+      setLifeCount();
+      setScoreCount();
       return;
     }
     randomPeep();
   }, 1000);
 };
 
-randomPeep();
+async function game() {
+  const countElement = document.createElement('div');
+  countElement.classList.add('count');
+  document.body.appendChild(countElement);
+  countElement.textContent = 3;
+  await new Promise(resolve => setTimeout(() => resolve(3), 1000));
+  countElement.textContent = 2;
+  await new Promise(resolve => setTimeout(() => resolve(2), 1000));
+  countElement.textContent = 1;
+  await new Promise(resolve => setTimeout(() => resolve(1), 1000));
+  document.body.removeChild(countElement);
+  randomPeep();
+}
+
+window.addEventListener('keydown', e => {
+  const selectedKey = document.querySelector(`.key[data-code="${e.code}"]`);
+  if (selectedKey !== $space) return;
+  if (selectedKey.classList.contains('press')) {
+    selectedKey.classList.remove('press');
+    game();
+  }
+});
+
+// getReady();
+// randomPeep();
 
 // const StartGame = setInterval(() => {
 //   const selectedKey = randomKey();
@@ -122,8 +164,6 @@ randomPeep();
 // }, 1000);
 
 // StartGame();
-
-const $hands = document.querySelector('.hands');
 
 $hands.addEventListener('change', e => {
   const targetFingers = document.querySelectorAll(`.${e.target.id}`);
