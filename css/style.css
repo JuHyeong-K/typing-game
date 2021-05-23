@@ -89,6 +89,10 @@ ul {
   padding: 5px;
   margin-top: 50px;
 }
+.left-finger, .right-finger{
+  width: 30px;
+  height: 30px;  
+}
 .finger{
   display: flex;
   flex-direction: column;
