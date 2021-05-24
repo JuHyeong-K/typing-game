@@ -36,50 +36,37 @@ const removePeep = key => {
 };
 
 // start
+window.addEventListener('keydown', e => {
+  const selectedKey = document.querySelector(`.key[data-code="${e.code}"]`);
+  if (!selectedKey) return; // html에 없는 키 눌렀을 때 예외처리
+  if (
+    selectedKey.getAttribute('data-code') === 'Slash' ||
+    selectedKey.getAttribute('data-code') === 'Quote'
+  ) {
+    e.preventDefault(); // firefox 브라우저 quick find 키(',/) 예외처리
+  }
+  if (selectedKey.classList.contains('block-key')) return; // block된 key 무시
+  selectedKey.classList.add('key-hit');
+  if (selectedKey.classList.contains('key-sign')) {
+    console.log('hitPeep!!');
+    removePeep(selectedKey);
+    countScore();
+  }
+});
 
-const throttle = (callback, delay) => {
-  let timerId;
-  return event => {
-    if (timerId) return;
-    timerId = setTimeout(
-      () => {
-        callback(event);
-        timerId = null;
-      },
-      delay,
-      event
-    );
-  };
-};
-
-window.addEventListener(
-  'keydown',
-  throttle(e => {
-    const selectedKey = document.querySelector(`.key[data-code="${e.code}"]`);
-    if (!selectedKey) return; // html에 없는 키 눌렀을 때 예외처리
-    if (
-      selectedKey.getAttribute('data-code') === 'Slash' ||
-      selectedKey.getAttribute('data-code') === 'Quote'
-    ) {
-      e.preventDefault(); // firefox 브라우저 quick find 키(',/) 예외처리
-    }
-    if (selectedKey.classList.contains('block-key')) return; // block된 key 무시
-    selectedKey.classList.add('key-hit');
-    if (selectedKey.classList.contains('key-sign')) {
-      console.log('hitPeep!!');
-      removePeep(selectedKey);
-      countScore();
-    }
-  }, 50)
-);
-
-const removeTransform = e => {
-  if (e.propertyName !== 'transform') return;
+const removeAnimation = e => {
   e.target.classList.remove('key-hit');
 };
+// animation이 끝났을 때 'key-hit' 삭제
+$keyboard.addEventListener('animationend', removeAnimation);
 
-// transition이 끝났을 때 transform 삭제
-$keyboard.addEventListener('transitionend', removeTransform);
+// const removeTransform = e => {
+//   // if (e.propertyName !== 'transform') return;
+//   e.target.classList.remove('key-hit');
+// };
+
+// // transition이 끝났을 때 'key-hit' 삭제
+// $keyboard.addEventListener('transitionend', removeTransform);
 
 // random key
 const randomKey = () => {
@@ -97,7 +84,7 @@ const randomKey = () => {
   return selectedKey;
 };
 
-async function game() {
+async function gameCountdown() {
   const countElement = document.createElement('div');
   countElement.classList.add('count');
   document.body.appendChild(countElement);
@@ -124,7 +111,7 @@ const randomPeep = () => {
     if ($lifeCount.textContent === '0') {
       console.log('finish');
       if (confirm('try agin?')) {
-        game();
+        gameCountdown();
       } else {
         $space.classList.add('press');
       }
@@ -136,7 +123,7 @@ const randomPeep = () => {
   }, 1000);
 };
 
-async function game() {
+async function gameCountdown() {
   const countElement = document.createElement('div');
   countElement.classList.add('count');
   document.body.appendChild(countElement);
@@ -155,7 +142,7 @@ window.addEventListener('keydown', e => {
   if (selectedKey !== $space) return;
   if (selectedKey.classList.contains('press')) {
     selectedKey.classList.remove('press');
-    game();
+    gameCountdown();
   }
 });
 

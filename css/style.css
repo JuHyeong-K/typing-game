@@ -109,10 +109,16 @@ ul {
 .key-sign {
   border: 4px solid red;
 }
-.key-hit{
+/* .key-hit{
   transform: scale(1.2);
   border: 4px solid yellow;
   box-shadow: 0 0 10px yellow;
+} */
+.key-hit{
+  animation-name: pressKey;
+  animation-duration: 0.2s;
+  animation-direction: alternate;
+  animation-timing-function:ease-in-out
 }
 .block-key{
   transform: scale(0.8);
@@ -149,5 +155,19 @@ ul {
   }
   100% {
     transform: scale(1.2);
+  }
+}
+
+@keyframes pressKey {
+  0% {
+    transform: scale(1.2);
+    border: 4px solid yellow;
+    box-shadow: 0 0 10px yellow;
+  }
+  100% {
+    transform: scale(1.0);
+    border: 1px solid #ccc;
+    box-shadow: 0 0 0;
+ 
   }
 }
