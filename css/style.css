@@ -1,0 +1,173 @@
+@import 'normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+/* 초기 설정 */
+*,
+*::before,
+*::after {
+    text-decoration: none;
+    box-sizing: border-box;
+}
+.a11y-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: polygon(0 0, 0 0, 0 0);
+}
+body {
+  font-size: 13px;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.2;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/*  */
+.title {
+  text-align: center;
+}
+
+.board {
+  font-size: 2em;
+  display: flex;
+  justify-content: space-around;
+}
+.status {
+  width: 30%;
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+}
+.level-count, .score-count, .life-count {
+  padding-left: 10px;
+}
+.keyboard {
+  display: flex;
+  flex-direction: column;
+}
+.keyboard-top, .keyboard-mid, .keyboard-bottom, .keyboard-special {
+  display: flex;
+  justify-content: center;
+}
+
+.key {
+  position: relative;
+  margin: 5px;
+  border: 1px solid #ccc;
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  transition: all 0.07s;
+  cursor: pointer;
+}
+.keyboard-special > .key {
+  width: 600px;
+}
+.key > kbd {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3em;
+}
+.hands{
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.5em;
+}
+.left-hand, .right-hand{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid black;
+  padding: 5px;
+  margin-top: 50px;
+}
+.left-finger, .right-finger{
+  width: 30px;
+  height: 30px;  
+}
+.finger{
+  display: flex;
+  flex-direction: column;
+  margin: 0 10px;
+}
+
+.finger > input{
+  cursor: pointer;
+  align-self: center;
+}
+
+
+
+.key-sign {
+  border: 4px solid red;
+}
+/* .key-hit{
+  transform: scale(1.2);
+  border: 4px solid yellow;
+  box-shadow: 0 0 10px yellow;
+} */
+.key-hit{
+  animation-name: pressKey;
+  animation-duration: 0.2s;
+  animation-direction: alternate;
+  animation-timing-function:ease-in-out
+}
+.block-key{
+  transform: scale(0.8);
+  color: #ccc;
+  border: 0.1px dashed #ccc;
+}
+
+
+.count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #aaa;
+  opacity: 0.5;
+  font-size: 20em;
+  text-align: center;
+}
+
+.key.press {
+  border: 2px solid yellow;
+  animation-name: pressSpace;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction:alternate-reverse;
+}
+
+
+@keyframes pressSpace {
+  0% {
+    transform: scale(1.0);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes pressKey {
+  0% {
+    transform: scale(1.2);
+    border: 4px solid yellow;
+    box-shadow: 0 0 10px yellow;
+  }
+  100% {
+    transform: scale(1.0);
+    border: 1px solid #ccc;
+    box-shadow: 0 0 0;
+ 
+  }
+}

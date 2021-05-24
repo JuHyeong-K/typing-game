@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+  <title>Typing Game</title>
+</head>
+<body>
+  <div class="container">
+    <main class="main">
+      <h1 class="title">Typing Game</h1>
+      <section class="board">
+        <h2 class="level">Level<span class="level-count">1</span></h2>
+        <ul class="status">
+          <li class="score">score :<span class="score-count">0</span></li>
+          <li class="life">life :<span class="life-count">5</span></li>
+        </ul>
+      </section>
+      <section class="keyboard">
+        <h2 class="a11y-hidden">KeyBoard</h2>
+        <div class="keyboard-top">
+          <div data-code="KeyQ" class="key left-little"><kbd>Q</kbd></div>
+          <div data-code="KeyW" class="key left-ring"><kbd>W</kbd></div>
+          <div data-code="KeyE" class="key left-middle"><kbd>E</kbd></div>
+          <div data-code="KeyR" class="key left-index"><kbd>R</kbd></div>
+          <div data-code="KeyT" class="key left-index"><kbd>T</kbd></div>
+          <div data-code="KeyY" class="key right-index"><kbd>Y</kbd></div>
+          <div data-code="KeyU" class="key right-index"><kbd>U</kbd></div>
+          <div data-code="KeyI" class="key right-middle"><kbd>I</kbd></div>
+          <div data-code="KeyO" class="key right-ring"><kbd>O</kbd></div>
+          <div data-code="KeyP" class="key right-little"><kbd>P</kbd></div>
+          <div data-code="BracketLeft" class="key right-little"><kbd>[</kbd></div>
+          <div data-code="BracketRight" class="key right-little"><kbd>]</kbd></div>
+        </div>
+        <div class="keyboard-mid">
+          <div data-code="KeyA" class="key left-little"><kbd>A</kbd></div>
+          <div data-code="KeyS" class="key left-ring"><kbd>S</kbd></div>
+          <div data-code="KeyD" class="key left-middle"><kbd>D</kbd></div>
+          <div data-code="KeyF" class="key left-index"><kbd>F</kbd></div>
+          <div data-code="KeyG" class="key left-index"><kbd>G</kbd></div>
+          <div data-code="KeyH" class="key right-index"><kbd>H</kbd></div>
+          <div data-code="KeyJ" class="key right-index"><kbd>J</kbd></div>
+          <div data-code="KeyK" class="key right-middle"><kbd>K</kbd></div>
+          <div data-code="KeyL" class="key right-ring"><kbd>L</kbd></div>
+          <div data-code="Semicolon" class="key right-little"><kbd>;</kbd></div>
+          <div data-code="Quote" class="key right-little"><kbd>'</kbd></div>
+        </div>
+        <div class="keyboard-bottom">
+          <div data-code="KeyZ" class="key left-little"><kbd>Z</kbd></div>
+          <div data-code="KeyX" class="key left-ring"><kbd>X</kbd></div>
+          <div data-code="KeyC" class="key left-middle"><kbd>C</kbd></div>
+          <div data-code="KeyV" class="key left-index"><kbd>V</kbd></div>
+          <div data-code="KeyB" class="key left-index"><kbd>B</kbd></div>
+          <div data-code="KeyN" class="key right-index"><kbd>N</kbd></div>
+          <div data-code="KeyM" class="key right-index"><kbd>M</kbd></div>
+          <div data-code="Comma" class="key right-middle"><kbd>,</kbd></div>
+          <div data-code="Period" class="key right-ring"><kbd>.</kbd></div>
+          <div data-code="Slash" class="key right-little"><kbd>/</kbd></div>
+        </div>
+        <div class="keyboard-special">
+          <div data-code="Space" class="key press"><kbd>SPACE</kbd></div>
+        </div>
+      </section>
+      <section class="hands">
+        <h2 class="hands-title a11y-hidden">hands</h2>
+        <div class="left-hand">
+          <h3>LEFT</h3>
+          <div class="finger">
+            <input type="checkbox" class="left-little-finger left-finger" id="left-little" checked>
+            <label for="left-little">little-finger</label>
+          </div>
+          <div class="finger">
+            <input type="checkbox" class="left-ring-finger left-finger" id="left-ring" checked>
+            <label for="left-ring">ring-finger</label>
+          </div>
+          <div class="finger">
+            <input type="checkbox" class="left-middle-finger left-finger" id="left-middle" checked>
+            <label for="left-middle">middle-finger</label>
+          </div>
+          <div class="finger">
+            <input type="checkbox" class="left-index-finger left-finger" id="left-index" checked>
+            <label for="left-index">index-finger</label>
+          </div>
+          <!-- <div class="finger">
+            <input type="checkbox" class="left-big-finger left-finger" id="left-big" checked>
+            <label for="left-big">big-finger</label>
+          </div> -->
+        </div>
+        <div class="right-hand">
+          <h3>RIGHT</h3>
+          <!-- <div class="finger">
+            <input type="checkbox" class="right-big-finger right-finger" id="right-big" checked>
+            <label for="right-big">big-finger</label>
+          </div> -->
+          <div class="finger">
+            <input type="checkbox" class="right-index-finger right-finger" id="right-index" checked>
+            <label for="right-index">index-finger</label>
+          </div>
+          <div class="finger">
+            <input type="checkbox" class="right-middle-finger right-finger" id="right-middle" checked>
+            <label for="right-middle">middle-finger</label>
+          </div>
+          <div class="finger">
+            <input type="checkbox" class="right-ring-finger right-finger" id="right-ring" checked>
+            <label for="right-ring">ring-finger</label>
+          </div>
+          <div class="finger">
+            <input type="checkbox" class="right-little-finger right-finger" id="right-little" checked>
+            <label for="right-little">little-finger</label>
+          </div>
+        </div>
+      </section>
+    </main>
+    </div>
+</body>
+</html>
